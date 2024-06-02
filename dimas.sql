@@ -89,3 +89,58 @@ VALUES ('P17062402','BK009','A003','2022-06-24','2022-06-27')
 
 INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
 VALUES ('P17062404','BK012','A003','2022-06-24','2022-06-30')
+
+UPDATE tblanggota
+SET 	nama='Husnun Afifa',
+		tgl_lahir='2002-02-02',
+		kota='Malang'
+		WHERE id_anggota='A002'
+
+
+UPDATE tblbuku
+SET 	judul='Basis Data',
+		penerbit='Tiga Serangkai'
+		WHERE tahunterbit='2012';
+		
+UPDATE tblpinjam
+SET	tgl_pinjam='2022-06-26',
+		kodebuku='BK007'
+		WHERE no_pinjam='P17062404'
+
+SELECT * FROM tblbuku
+SELECT * FROM tblpinjam
+
+SELECT * FROM tblanggota
+WHERE gender='Lk'
+AND kota='Malang'
+
+SELECT * FROM tblbuku
+WHERE tahunterbit='2009'
+
+SELECT * FROM tblanggota
+WHERE kota='Malang'
+AND YEAR(tgl_lahir) >= 2000;
+
+SELECT * FROM tblanggota
+INNER JOIN tblbuku
+INNER JOIN tblpinjam
+WHERE penerbit='Elex Media'
+AND kota='Malang'
+
+DELETE FROM tblpinjam
+WHERE id_anggota IN (
+    SELECT id_anggota
+    FROM tblanggota
+    WHERE YEAR(tgl_lahir) BETWEEN 1990 AND 2000
+);
+
+DELETE FROM tblanggota
+WHERE YEAR(tgl_lahir) BETWEEN 1990 AND 2000;
+
+DELETE FROM tblbuku
+WHERE penerbit='Elex Media'
+AND penulis LIKE '%d';
+
+DELETE FROM tblpinjam
+WHERE DAY(tgl_kembali) > 30
+AND kodebuku != 'BK009';
