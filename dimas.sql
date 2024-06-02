@@ -25,3 +25,67 @@ kodebuku VARCHAR(5),
 tgl_pinjam DATE,
 tgl_kembali DATE,
 FOREIGN KEY (id_anggota) REFERENCES tblanggota(id_anggota));
+
+
+SELECT * FROM tblbuku
+
+ALTER TABLE tblanggota
+ADD jenisKelamin INT NOT NULL AFTER tgl_lahir;
+
+ALTER TABLE tblbuku
+ADD keluar INT NOT NULL;
+
+ALTER TABLE tblpinjam
+ADD PRIMARY KEY(no_pinjam);
+
+ALTER TABLE tblpinjam
+ADD FOREIGN KEY(kodebuku) REFERENCES tblbuku(kodebuku);
+
+ALTER TABLE tblanggota
+CHANGE jenisKelamin gender CHAR(2);
+
+ALTER TABLE tblbuku RENAME COLUMN pengarang TO penulis;
+
+ALTER TABLE tblanggota
+DROP COLUMN nohp;
+
+ALTER TABLE tblbuku
+DROP COLUMN keluar;
+
+INSERT INTO tblanggota(id_anggota,nama,tgl_lahir,gender,kota)
+VALUES ('A001','Multazam G','2000-02-20','Lk','Bojonegoro')
+
+INSERT INTO tblanggota(id_anggota,nama,tgl_lahir,gender,kota)
+VALUES ('A002','Galbie Elinour','1997-06-16','Pr','Malang')
+
+INSERT INTO tblanggota(id_anggota,nama,tgl_lahir,gender,kota)
+VALUES ('A003','Alfan Cahyo','1998-10-13','Lk','Malang')
+
+INSERT INTO tblbuku(kodebuku,judul,penulis,penerbit,tahunterbit)
+VALUES ('BK005','Mahir Corel Draw','Yuli Kristanto S','Izuka Komp','2008')
+
+INSERT INTO tblbuku(kodebuku,judul,penulis,penerbit,tahunterbit)
+VALUES ('BK007','Teknik Photoshop CS3','Rahmat Widiyanto','Elex Media','2009')
+
+INSERT INTO tblbuku(kodebuku,judul,penulis,penerbit,tahunterbit)
+VALUES ('BK009','Jago SEO','Hidayat Rahmad','Elex Media','2011')
+
+INSERT INTO tblbuku(kodebuku,judul,penulis,penerbit,tahunterbit)
+VALUES ('BK012','Hacking Wireless Network','Suryatama Udin','Jasakom','2012')
+
+SELECT * FROM tblbuku
+
+INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
+VALUES ('P17062301','BK005','A002','2022-06-23','2022-06-25')
+
+INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
+VALUES ('P17062302','BK007','A003','2022-06-23','2022-06-25')
+
+INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
+VALUES ('P17062401','BK007','A001','2022-06-24','2022-06-27')
+
+INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
+VALUES ('P17062402','BK009','A003','2022-06-24','2022-06-27')
+
+INSERT INTO tblpinjam(no_pinjam,kodebuku,id_anggota,tgl_pinjam,tgl_kembali)
+VALUES ('P17062404','BK012','A003','2022-06-24','2022-06-30')
